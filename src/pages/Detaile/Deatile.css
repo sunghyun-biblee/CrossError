@@ -1,0 +1,137 @@
+.detail_wrap {
+  width: 100%;
+}
+.detail_box {
+  position: relative;
+  border-radius: 10px;
+  height: 90vh;
+  overflow: hidden;
+  background-color: #111111;
+  transition: height 0.5s;
+  @media screen and (max-width: 1315px) {
+    height: 90vh;
+  }
+  @media screen and (max-width: 950px) {
+    height: 80vh;
+  }
+  @media screen and (max-width: 768px) {
+    height: auto;
+  }
+}
+.detail_img {
+  width: 100%;
+  height: auto;
+}
+.detail_background {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 5vh;
+  background: linear-gradient(0deg, #111, transparent 50%);
+}
+.title {
+  position: absolute;
+  left: 50px;
+  bottom: 30px;
+  text-shadow: 3px 3px 4px #131719;
+  font-size: 50px;
+  transition: all 0.5s;
+  @media screen and (max-width: 950px) {
+    font-size: 45px;
+    left: 40px;
+    bottom: 20px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 35px;
+    left: 40px;
+    bottom: 15px;
+  }
+}
+.infobox {
+  padding: 0 10px;
+}
+.infobox.one,
+.infobox.two {
+  font-weight: 600;
+}
+.infobox.one {
+  display: flex;
+  justify-content: space-between;
+  color: #dedede;
+}
+.video {
+  color: gray;
+}
+.infobox.two {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #dedede;
+
+  .status {
+    margin: 0;
+    color: green;
+  }
+}
+.overview {
+  font-size: 30px;
+  padding-bottom: 10px;
+  transition: all 0.5s;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 200px;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background-color: #131719;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #dedede;
+    border-radius: 4px;
+    width: 5px;
+  }
+  @media screen and (max-width: 1315px) {
+    height: 450px;
+  }
+  @media screen and (max-width: 950px) {
+    font-size: 26px;
+    height: 450px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 22px;
+  }
+}
+.slice {
+  display: block;
+  color: gray;
+  font-weight: 700;
+  margin: 0 20px;
+  transition: all 0.5s;
+  @media screen and (max-width: 950px) {
+    margin: 0 10px;
+  }
+  @media screen and (max-width: 768px) {
+    margin: 0 10px;
+  }
+}
+.info {
+  padding: 0 10px;
+  font-size: 20px;
+  transition: all 0.5s;
+
+  @media screen and (max-width: 950px) {
+    font-size: 18px;
+  }
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.close_btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+}
