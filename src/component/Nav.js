@@ -23,8 +23,8 @@ export const Nav = () => {
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
   // const [currentUser, setCurrentUser] = useState([]);
-  const user = useSelector((state) => state.userDB);
-  const user1 = useSelector((state) => state.user1);
+  const user = useSelector((state) => state.user);
+  const user1 = useSelector((state) => state.userOne);
   console.log(user1);
   const dispath = useDispatch();
   console.log(user);

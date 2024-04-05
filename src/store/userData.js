@@ -29,4 +29,3 @@ export const user1 = createSlice({
   initialState: "user",
 });
 export const { setUser, removeUser } = userDB.actions;
-export default { userDB, user1 }.reducers;
