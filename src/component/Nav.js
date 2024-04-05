@@ -7,8 +7,10 @@ import {
   signOut,
 } from "firebase/auth";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { removeUser, setUser } from "../store/userData";
 
 export const Nav = () => {
   const initialUserData = localStorage.getItem("userData")
@@ -20,9 +22,13 @@ export const Nav = () => {
   const navi = useNavigate();
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
-  const [currentUser, setCurrentUser] = useState([]);
-
-  const user = auth.currentUser;
+  // const [currentUser, setCurrentUser] = useState([]);
+  const user = useSelector((state) => state.userDB);
+  const user1 = useSelector((state) => state.user1);
+  console.log(user1);
+  const dispath = useDispatch();
+  console.log(user);
+  // console.log(currentUser);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -31,6 +37,9 @@ export const Nav = () => {
         }
       } else {
         navi("/");
+      }
+      if (auth) {
+        // setCurrentUser(auth.currentUser);
       }
     });
   }, [auth, provider]);
@@ -52,23 +61,32 @@ export const Nav = () => {
   };
 
   const handleAuth = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log("result", result.user);
-        setCurrentUser(result.user);
-        localStorage.setItem("userData", JSON.stringify(result.user));
-      })
-      .catch((error) => alert(error.message));
+    signInWithPopup(auth, provider).then((result) => {
+      dispath(
+        setUser({
+          id: result.user.id,
+          email: result.user.email,
+          displayName: result.user.displayName,
+          photoURL: result.user.photoURL,
+        })
+      );
+      console.log("result", result.user);
+      // setCurrentUser(result.user);
+      localStorage.setItem("userData", JSON.stringify(result.user));
+    });
   };
 
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        setCurrentUser([]);
+        dispath(removeUser());
+        localStorage.removeItem("userData");
+        // setCurrentUser([]);
         navi("/");
       })
       .catch((error) => console.log(error.message));
   };
+
   return (
     <>
       <NavWrap show={show}>
@@ -93,8 +111,8 @@ export const Nav = () => {
             />
             <Logut>
               <UserImg
-                src={currentUser.photoURL}
-                alt={currentUser.displayName}
+              // src={currentUser.photoURL}
+              // alt={currentUser.displayName}
               ></UserImg>
               <Dropbox>
                 <span onClick={handleLogout}>로그아웃</span>

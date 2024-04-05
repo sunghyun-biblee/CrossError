@@ -9,12 +9,15 @@ export const SearchPage = () => {
   const [searchResult, setSearchResult] = useState([]);
 
   const useQuery = () => {
+    console.log("uselocation:", useLocation());
+
     return new URLSearchParams(useLocation().search);
   };
 
   let query = useQuery();
 
   useQuery();
+  console.log(query);
   const searchNotion = query.get("q");
   console.log(searchNotion);
 
